@@ -7,13 +7,11 @@ export async function fetchUserList(): Promise<User[]> {
   const result = await fetch('https://jsonplaceholder.typicode.com/users');
   const data = await result.json();
 
-  // return new Promise(resolve => {
-  //   setTimeout(() => {
-  //     resolve(data);
-  //   }, 2000);
-  // });
-
-  return data;
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data);
+    }, 2000);
+  });
 }
 
 async function handler(req: UserRequest, res: UserResponse) {

@@ -1,10 +1,11 @@
 import { fetchUserList } from '@/api/user';
 import { User } from '@/api/user/types';
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import Suspense from '@/components/Suspense';
+import { UseQueryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { FC } from 'react';
 
 function SuspenseTestMain() {
-  const { data } = useQuery(getUserListQueryOptions());
+  const { data } = useSuspenseQuery(getUserListQueryOptions());
 
   return (
     <main>
@@ -20,9 +21,12 @@ function SuspenseTestMain() {
 
 const SuspenseTestMainWithSuspense: FC = () => {
   return (
-    // <Suspense>
-    <SuspenseTestMain />
-    // </Suspense>
+    <Suspense
+      fallback={<>Loading...</>}
+      suspense_query_key={[getUserListQueryOptions().queryKey]}
+    >
+      <SuspenseTestMain />
+    </Suspense>
   );
 };
 
