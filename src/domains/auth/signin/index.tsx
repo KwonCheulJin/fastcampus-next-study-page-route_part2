@@ -10,6 +10,7 @@ import {
   signIn,
   SignInOptions,
   SignInResponse,
+  signOut,
   useSession,
 } from 'next-auth/react';
 import { FormEvent, useEffect, useState } from 'react';
@@ -58,7 +59,11 @@ export default function SigninMain() {
             {isPending ? '로그인중...' : '로그인'}
           </Button>
         </Form>
-        {is_logged_in && <Button className="mt-3">로그아웃</Button>}
+        {is_logged_in && (
+          <Button className="mt-3" onClick={() => signOut()}>
+            로그아웃
+          </Button>
+        )}
       </Section>
     </main>
   );

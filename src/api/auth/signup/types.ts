@@ -1,4 +1,4 @@
-import { ErrorResult } from '@/api/auth/types';
+import { ErrorResult } from '@/api/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 interface SignupInput {
